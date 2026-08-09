@@ -57,12 +57,23 @@ model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 
 # Accuracy
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
+import numpy as np
 
-score = r2_score(y_test, predictions)
+y_pred = model.predict(X_test)
 
-print("\nR2 Score:")
-print(score)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print("MAE :", mae)
+print("MSE :", mse)
+print("RMSE:", rmse)
+print("R2  :", r2)
+
 
 # Predict a new student
 new_student = pd.DataFrame({
